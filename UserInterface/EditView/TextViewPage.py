@@ -34,30 +34,31 @@ class TextViewPage(QWidget):
             card = CardWidget(self)
             card_layout = QVBoxLayout(card)
             
-            card_layout.setSpacing(2)  # 将间距从 8 减小到 2
+            card_layout.setSpacing(2)
             card_layout.setContentsMargins(15, 10, 15, 10)
 
-            # 原文
-            source_content = BodyLabel(row_data['source'], self)
+            # 原文 - 修改字段名
+            source_content = BodyLabel(row_data.get('source_text', ''), self)
             source_content.setWordWrap(True)
             source_content.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
             card_layout.addWidget(source_content)
 
-            # 译文
-            if row_data['translation']:
-                trans_content = BodyLabel(row_data['translation'], self)
+            # 译文 - 修改字段名
+            translated_text = row_data.get('translated_text', '')
+            if translated_text:
+                trans_content = BodyLabel(translated_text, self)
                 trans_content.setWordWrap(True)
-                trans_content.setAlignment(Qt.AlignLeft | Qt.AlignVCenter) # 确保左对齐
+                trans_content.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
                 card_layout.addWidget(trans_content)
 
-            # 润文
-            if row_data['polish']:
-                polish_content = BodyLabel(row_data['polish'], self)
+            # 润文 - 修改字段名
+            polished_text = row_data.get('polished_text', '')
+            if polished_text:
+                polish_content = BodyLabel(polished_text, self)
                 polish_content.setWordWrap(True)
-                polish_content.setAlignment(Qt.AlignLeft | Qt.AlignVCenter) # 确保左对齐
+                polish_content.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
                 card_layout.addWidget(polish_content)
 
             self.scroll_layout.addWidget(card)
 
-        # 将所有卡片推到顶部，防止垂直居中
         self.scroll_layout.addStretch(1)
