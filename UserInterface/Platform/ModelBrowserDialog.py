@@ -284,10 +284,10 @@ class ModelBrowserDialog(MessageBoxBase, Base):
             auto_complete = self.platform_config.get("auto_complete", False)
 
             # 自动补全规则（参考 TranslatorConfig）
-            if self.platform_key == "sakura" and not base_url.endswith("/v1"):
-                base_url = base_url + "/v1"
-            elif auto_complete and not re.search(r"/v[1-9]$", base_url):
-                base_url = base_url + "/v1"
+            # if self.platform_key == "sakura" and not base_url.endswith("/v1"):
+            #     base_url = base_url + "/v1"
+            # elif auto_complete and not re.search(r"/v[1-9]$", base_url):
+            #     base_url = base_url + "/v1"
 
             url = f"{base_url}/models"
 

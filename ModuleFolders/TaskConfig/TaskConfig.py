@@ -98,12 +98,12 @@ class TaskConfig(Base):
         self.base_url = self.platforms.get(self.target_platform).get("api_url")
         auto_complete = self.platforms.get(self.target_platform).get("auto_complete")
 
-        if (self.target_platform == "sakura" or self.target_platform == "LocalLLM") and not self.base_url.endswith("/v1"):
-            self.base_url += "/v1"
-        elif auto_complete:
-            version_suffixes = ["/v1", "/v2", "/v3", "/v4"]
-            if not any(self.base_url.endswith(suffix) for suffix in version_suffixes):
-                self.base_url += "/v1"
+        # if (self.target_platform == "sakura" or self.target_platform == "LocalLLM") and not self.base_url.endswith("/v1"):
+        #     self.base_url += "/v1"
+        # elif auto_complete:
+        #     version_suffixes = ["/v1", "/v2", "/v3", "/v4"]
+        #     if not any(self.base_url.endswith(suffix) for suffix in version_suffixes):
+        #         self.base_url += "/v1"
 
         # 获取接口限额
         self.rpm_limit = self.platforms.get(self.target_platform).get("rpm_limit", 4096)    # 当取不到账号类型对应的预设值，则使用该值
